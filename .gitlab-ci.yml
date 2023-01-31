@@ -1,0 +1,54 @@
+variables:
+  IMAGE_NAME: octalcomputer/demo-app
+  IMAGE_TAG: node-app-1.0
+  DOCKER_USERNAME: $DOCKER_USERNAME
+  DOCKER_PASSWORD: $DOCKER_PASSWORD
+  KUBECONFIG: $KUBECONFIG
+
+
+stages:
+  - build
+  - test
+  - build_image
+  - push_image
+  - deploy
+  - notify
+
+build:
+  stage: build
+  script:
+  - git clone https://github.com/user/my-node-app.git
+  - yarn install
+  - yarn build
+
+test:
+  stage: test
+  script:
+  - yarn test
+
+build_image:
+  stage: build_image
+  image: docker:latest
+  services: 
+    - docker:dind
+
+  before_script:
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASS
+  
+  script:
+  - docker build -t $IMAGE_NAME:$IMAGE_TAG .
+  - docker push $IMAGE_NAME:$IMAGE_TAG
+    
+
+push_image:
+  stage: push_image
+  script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push $IMAGE_NAME:$IMAGE_TAG
+
+deploy:
+  stage: deploy
+  script:
+  - echo "$KUBECONFIG" | base64 --decode > kubeconfig.yml
+  - export KUBECONFIG=kubeconfig.yml
+
