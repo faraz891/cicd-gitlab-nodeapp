@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "echo \"Building...\"",
-    "test": "jest"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "faraz891 <faraz891@gmail.com>",
@@ -13,7 +13,8 @@
     "express": "^4.18.2"
   },
   "devDependencies": {
-    "jest": "^29.4.1"
+    "jest": "^29.4.1",
+    "mocha": "^10.2.0"
   },
   "repository": "git+https://github.com/faraz891/cicd-gitlab-nodeapp.git",
   "bugs": {
