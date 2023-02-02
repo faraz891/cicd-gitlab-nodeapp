@@ -1,15 +1,24 @@
 {
   "name": "firstapp",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "echo \"Building...\"",
+    "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "faraz891 <faraz891@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"
-  }
+  },
+  "devDependencies": {
+    "jest": "^29.4.1"
+  },
+  "repository": "git+https://github.com/faraz891/cicd-gitlab-nodeapp.git",
+  "bugs": {
+    "url": "https://github.com/faraz891/cicd-gitlab-nodeapp/issues"
+  },
+  "homepage": "https://github.com/faraz891/cicd-gitlab-nodeapp#readme",
+  "description": ""
 }
