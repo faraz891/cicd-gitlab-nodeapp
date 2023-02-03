@@ -49,6 +49,7 @@ push_image:
 deploy:
   stage: deploy
   script:
+  - echo "Hallo"
   - echo "$KUBECONFIG" | base64 --decode > kubeconfig.yml
   - export KUBECONFIG=kubeconfig.yml
 
